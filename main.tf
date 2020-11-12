@@ -1,5 +1,5 @@
 module "label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.14.1"
+  source     = "../terraform-null-label"
   namespace  = var.namespace
   stage      = var.stage
   name       = var.name
@@ -9,7 +9,8 @@ module "label" {
 }
 
 locals {
-  public_key_filename  = "${var.ssh_public_key_path}/${module.label.id}${var.public_key_extension}"
+  public_key_filename = "${var.ssh_public_key_path}/${module.label.id}${var.public_key_extension}"
+  #tfsec:ignore:GEN002
   private_key_filename = "${var.ssh_public_key_path}/${module.label.id}${var.private_key_extension}"
 }
 
